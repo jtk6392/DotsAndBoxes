@@ -18,6 +18,10 @@ public class Board {
         score[2] = i*j;
     }
 
+    public int getBoardSize(){
+        return this.boxArray.length;
+    }
+
     public static void Play(DotsAndBoxes.src.Game.Box.Side bs, DotsAndBoxes.src.Game.Users player, int i, int j){
 
     }
