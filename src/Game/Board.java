@@ -53,20 +53,42 @@ public class Board {
      * @param i      index of the row
      * @param j      index of the column
      */
-    public static void Play(Box.Side bs, Users player, int i, int j) {
-
+    public void Play(Box.Side bs, Users player, int i, int j) {
+        boolean boxSide = boxArray[i][j].getSide(bs);
+        if (!boxSide) {
+            boxArray[i][j].setSide(bs);
+        }
+        boxArray[i][j].checkClaimed(player);
     }
 
+    /**
+     * Checks for the shared side and sees if the side is the boarder of the box
+     *
+     * @param i index of the row
+     * @param j index of the column
+     * @param s the side being checked
+     */
+    public void claimSharedSide(int i, int j, Box.Side s) {
+//        boxArray.length
+//        int boxPosition = boxArray[i][j].getxVal();
+        int xLength = boxArray[i].length;
+//        if (xLength + 1) {  // get the length of the row and add one to indicate
 
-    public static void claimSharedSide(int i, int j, Box.Side s) {
-
+        }
     }
 
+    /**
+     *
+     * @return string
+     */
     @Override
     public String toString() {
         return "No";
     }
 
+    /**
+     *
+     */
     public static void Win() {
 
     }
