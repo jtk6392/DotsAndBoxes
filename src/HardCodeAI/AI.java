@@ -16,21 +16,8 @@ public class AI {
     }
 
     private boolean checkBox(int i, int j, Box.Side side){
-        int filledSides = 0;
         Box box1 = currentBoard.getBox(i, j);
-        if (box1.getSide(Box.Side.NORTH ){
-            filledSides++;
-        }
-        if (box1.getSide(Box.Side.SOUTH){
-            filledSides++;
-        }
-        if (box1.getSide(Box.Side.EAST){
-            filledSides++;
-        }
-        if (box1.getSide(Box.Side.WEST){
-            filledSides++;
-        }
-        return (filledSides<=2);
+        return checkBox(box1);
     }
 
     private boolean checkBox(Box b){
