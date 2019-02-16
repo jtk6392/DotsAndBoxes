@@ -1,10 +1,10 @@
-package DotsAndBoxes.src.Game;
+package Game;
 
 public class Board {
 
     private int i = 4;
     private int j = 4;
-    private DotsAndBoxes.src.Game.Box boxArray[][] = new DotsAndBoxes.src.Game.Box[i][j];
+    private Box boxArray[][] = new Box[i][j];
     private int score[]= new int[3];
 
 
@@ -22,11 +22,11 @@ public class Board {
         return this.boxArray.length;
     }
 
-    public static void Play(DotsAndBoxes.src.Game.Box.Side bs, DotsAndBoxes.src.Game.Users player, int i, int j){
+    public static void Play(Game.Box.Side bs, Users player, int i, int j){
 
     }
 
-    public static void claimSharedSide(DotsAndBoxes.src.Game.Box.Side s, int i, int j){
+    public static void claimSharedSide(Box.Side s, int i, int j){
 
     }
 
@@ -40,8 +40,8 @@ public class Board {
 
     }
 
-    public static DotsAndBoxes.src.Game.Box getPartner(){
-        return new DotsAndBoxes.src.Game.Box();
+    public static Box getPartner(){
+        return new Box();
     }
 
 }
