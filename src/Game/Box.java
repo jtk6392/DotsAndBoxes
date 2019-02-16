@@ -18,10 +18,10 @@ public class Box {
         claimed = 0;
     }
 
-    public int checkClaimed(Users player){
-        if(this.north && this.south && this.east && this.west){
+    public int checkClaimed(Users player) {
+        if (this.north && this.south && this.east && this.west) {
             //Based on which player's turn it is.
-            if(player == Users.Player) {
+            if (player == Users.Player) {
                 this.claimed = 1;
             } else {
                 this.claimed = 2;
