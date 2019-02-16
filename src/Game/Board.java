@@ -18,9 +18,7 @@ public class Board {
      * Board Size: 4 x 4
      */
     public Board() {
-        boxArray = new Box[4][4];
-        score = new int[3];
-        score[2] = 16;
+        this(4, 4);
     }
 
     /**
@@ -33,25 +31,34 @@ public class Board {
      */
     public Board(int i, int j) {
         boxArray = new Box[i][j];
+        for (int i = 0; i < this.getBoardSize(); i++) {
+            for (int j = 0; j < this.getBoardSize(); j++) {
+                boxArray[i][j] = new Box(i, j);
+            }
+        }
         score = new int[3];
         score[2] = i * j;  // total score
     }
 
+    public int getBoardSize() {
+        return this.boxArray.length;
+    }
+
     /**
-     * Sets the state of the side of the box to true
+     * Sets the state of the size of the box to true
      * and update and check and see if a box if finished
      *
-     * @param B      a box object that gets passed in]
      * @param bs     box side
      * @param player the player
      * @param i      index of the row
      * @param j      index of the column
      */
-    public static void Play(Box B, Box.Side bs, Users player, int i, int j) {
-//        B.checkSide(bs)
+    public static void Play(Box.Side bs, Users player, int i, int j) {
+
     }
 
-    public static void claimSharedSide(Box.Side s, int i, int j) {
+
+    public static void claimSharedSide(int i, int j, Box.Side s) {
 
     }
 
@@ -64,8 +71,47 @@ public class Board {
 
     }
 
-    public static Box getPartner() {
-        return new Box();
+    public boolean hasPartner(int i, int j, Game.Box.Side s) {
+        switch (s) {
+            case EAST:
+                return i == getBoardSize();
+            case WEST:
+                return i == 0;
+            case NORTH:
+                return j == 0;
+            case SOUTH:
+                return j == getBoardSize();
+        }
+    }
+
+    public boolean hasPartner(Box b, Game.Box.Side s) {
+        switch (s) {
+            case EAST:
+                return  == getBoardSize();
+            case WEST:
+                return i == 0;
+            case NORTH:
+                return j == 0;
+            case SOUTH:
+                return j == getBoardSize();
+        }
+    }
+
+    public Box getPartner(int i, int j, Game.Box.Side s) {
+        switch (s) {
+            case EAST:
+                return this.boxArray[i + 1][j];
+            case WEST:
+                return this.boxArray[i - 1][j];
+            case NORTH:
+                return this.boxArray[i][j + 1];
+            case SOUTH:
+                return this.boxArray[i][j - 1];
+        }
+    }
+
+    public Box getBox(int i, int j){
+        return boxArray[i][j];
     }
 
 }
