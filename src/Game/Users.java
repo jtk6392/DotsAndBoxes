@@ -1,6 +1,6 @@
 package Game;
 
 public enum Users {
-    PLAYER,
-    AI
+    PLAYER1,
+    PLAYER2
 }
