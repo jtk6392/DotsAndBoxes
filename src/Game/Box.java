@@ -2,6 +2,9 @@ package Game;
 
 public class Box {
 
+    private final int xVal;
+    private final int yVal;
+
     public enum Side{
         NORTH,
         SOUTH,
@@ -17,7 +20,9 @@ public class Box {
     private int claimed;
 
     //Constructor for
-    public Box(){
+    public Box(int xVal, int yVal){
+        this.xVal = xVal;
+        this.yVal = yVal;
         north = false;
         south = false;
         east = false;
