@@ -1,4 +1,4 @@
-package DotsAndBoxes.src.Game;
+package Game;
 
 public enum Users {
     Player,
