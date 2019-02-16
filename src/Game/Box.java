@@ -40,7 +40,7 @@ public class Box {
         }
     }
 
-    public boolean checkSide(Side s) {
+    public boolean getSide(Side s) {
         switch(s) {
             case EAST: return this.east;
             case WEST: return this.west;
