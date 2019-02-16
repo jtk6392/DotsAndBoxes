@@ -11,16 +11,35 @@ public class AI {
     private Users player;
     private final static Random rng = new Random();
 
+    /**
+     * creates an instance of AI
+     *
+     * @param currentBoard the Board that the AI and player use
+     * @param player       idk
+     */
     public AI(Board currentBoard, Users player) {
         this.currentBoard = currentBoard;
         this.player = player;
     }
 
-    private int claimedEdges(int i, int j, Box.Side side) {
+    /**
+     * returns number of claimed edges around a box
+     *
+     * @param i x coordinate of box
+     * @param j y coordinate of box
+     * @return integer corresponding to number of claimed sizes
+     */
+    private int claimedEdges(int i, int j) {
         Box box1 = currentBoard.getBox(i, j);
         return claimedEdges(box1);
     }
 
+    /**
+     * returns number of claimed edges around a box
+     *
+     * @param b the Box we are looking at
+     * @return integer corresponding to number of claimed sizes
+     */
     private int claimedEdges(Box b) {
         int filledSides = 0;
         if (b.getSide(Box.Side.NORTH)) {
@@ -38,23 +57,45 @@ public class AI {
         return filledSides;
     }
 
+    /**
+     * checks to see if a move will create a new box with 3 claimed edges
+     *
+     * @param i    x coordinate of box
+     * @param j    y coordinate of box
+     * @param side side that we want to test
+     * @return boolean whether or not the move is good
+     */
     private boolean checkMove(int i, int j, Box.Side side) {
         if (currentBoard.hasPartner(currentBoard.getBox(i, j), side)) {
             Box newBox = currentBoard.getPartner(i, j, side);
-            return claimedEdges(i, j, side)<=2 && claimedEdges(newBox)<=2;
+            return claimedEdges(i, j) <= 2 && claimedEdges(newBox) <= 2;
         } else {
-            return claimedEdges(i, j, side)<=2;
+            return claimedEdges(i, j) <= 2;
         }
 
     }
 
-    private boolean scorableBox(Box b){
-        return claimedEdges(b)==3;
+    /**
+     * tests to see if a box has only one unclaimed edge
+     *
+     * @param b Box b to check
+     * @return true or false if box only has one unclaimed side
+     */
+    private boolean scorableBox(Box b) {
+        return claimedEdges(b) == 3;
     }
 
-    private boolean scorableBox(int i, int j){
+    /**
+     * tests to see if a box has only one unclaimed edge
+     *
+     * @param i x coordinate of box
+     * @param j y coordinate of box
+     * @return true or false if box only has one unclaimed side
+     */
+    private boolean scorableBox(int i, int j) {
         return scorableBox(currentBoard.getBox(i, j));
     }
+
 
     private boolean determinePointMove() {
         for (int i = 0; i < currentBoard.getBoardSize(); i++) {
@@ -70,6 +111,9 @@ public class AI {
         return false;
     }
 
+    /**
+     * selects a random move that will not cause the other player to have a scorable box
+     */
     private void randomMove() {
         int i, j, max, s;
         Box.Side side = null;
@@ -96,6 +140,10 @@ public class AI {
         }
     }
 
+    /**
+     * complete AI logic
+     * @param currentBoard board that the AI plays on
+     */
     public void makePlay(Board currentBoard) {
         this.currentBoard = currentBoard;
         boolean madeMove = false;
