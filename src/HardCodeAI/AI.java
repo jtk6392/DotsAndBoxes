@@ -1,7 +1,8 @@
 package HardCodeAI;
 
-import DotsAndBoxes.src.Game.Board;
-import DotsAndBoxes.src.Game.Users;
+import Game.Board;
+import Game.Box;
+import Game.Users;
 import java.util.Random;
 
 public class AI {
@@ -13,8 +14,17 @@ public class AI {
         this.currentBoard = currentBoard;
         this.player = player;
     }
+
+    private boolean checkMove(int i, int j, Box.Side side) {
+        Box currentBox =
+    }
+
     private boolean determinePointMove() {
-        for (int i; i<currentBoard.)
+        for (int i=0; i<currentBoard.getBoardSize(); i++){
+            for (int j=0; j<currentBoard.getBoardSize(); j++){
+                Box currentBox =
+            }
+        }
 
         return false;
     }
