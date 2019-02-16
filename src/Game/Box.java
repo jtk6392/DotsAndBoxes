@@ -1,4 +1,4 @@
-package DotsAndBoxes.src;
+package DotsAndBoxes.src.Game;
 
 public class Box {
 
