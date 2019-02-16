@@ -15,8 +15,46 @@ public class AI {
         this.player = player;
     }
 
+    private boolean checkBox(int i, int j, Box.Side side){
+        int filledSides = 0;
+        Box box1 = currentBoard.getBox(i, j);
+        if (box1.getSide(Box.Side.NORTH ){
+            filledSides++;
+        }
+        if (box1.getSide(Box.Side.SOUTH){
+            filledSides++;
+        }
+        if (box1.getSide(Box.Side.EAST){
+            filledSides++;
+        }
+        if (box1.getSide(Box.Side.WEST){
+            filledSides++;
+        }
+        return (filledSides<=2);
+    }
+
+    private boolean checkBox(Box b){
+        int filledSides = 0;
+
+        if (b.getSide(Box.Side.NORTH ){
+            filledSides++;
+        }
+        if (b.getSide(Box.Side.SOUTH){
+            filledSides++;
+        }
+        if (b.getSide(Box.Side.EAST){
+            filledSides++;
+        }
+        if (b.getSide(Box.Side.WEST){
+            filledSides++;
+        }
+        return (filledSides<=2);
+    }
+
     private boolean checkMove(int i, int j, Box.Side side) {
-        Box currentBox =
+        Box newBox = currentBoard.getPartner(i, j, side);
+
+        return checkBox(i, i, side) && checkBox(newBox);
     }
 
     private boolean determinePointMove() {

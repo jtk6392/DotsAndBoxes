@@ -44,8 +44,22 @@ public class Board {
 
     }
 
-    public static Box getPartner(){
-        return new Box();
+    public Box hasPartner(int i, int j, Game.Box.Side s){
+        switch(s) {
+            case EAST && i == getBoardSize(): return this.boxArray[i+1][j];
+            case WEST: return this.boxArray[i-1][j];
+            case NORTH: return this.boxArray[i][j+1];
+            case SOUTH: return this.boxArray[i][j-1];
+        }
+    }
+
+    public Box getPartner(int i, int j, Game.Box.Side s){
+        switch(s) {
+            case EAST: return this.boxArray[i+1][j];
+            case WEST: return this.boxArray[i-1][j];
+            case NORTH: return this.boxArray[i][j+1];
+            case SOUTH: return this.boxArray[i][j-1];
+        }
     }
 
 }
