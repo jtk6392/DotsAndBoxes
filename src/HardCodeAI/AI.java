@@ -20,8 +20,8 @@ public class AI {
     }
 
     private boolean determinePointMove() {
-        for (int i=0; i<currentBoard.getBoardSize(); i++){
-            for (int j=0; j<currentBoard.getBoardSize(); j++){
+        for (int i = 0; i < currentBoard.getBoardSize(); i++) {
+            for (int j = 0; j < currentBoard.getBoardSize(); j++) {
                 Box currentBox =
             }
         }
@@ -33,29 +33,56 @@ public class AI {
         return false;
     }
 
+    private void randomMove() {
+        int i, j, max, s;
+        Box.Side side = null;
+        max = 0;
+
+        i = rng.nextInt(max) + 1;
+        j = rng.nextInt(max) + 1;
+        s = rng.nextInt(4);
+        switch (s) {
+            case 0:
+                side = Box.Side.EAST;
+                break;
+            case 1:
+                side = Box.Side.SOUTH;
+                break;
+            case 2:
+                side = Box.Side.WEST;
+                break;
+            case 3:
+                side = Box.Side.NORTH;
+        }
+        if (checkMove(i, j, side)) {
+            Board.Play(side, this.player, i, j);
+        }
+    }
 
     public void makePlay(Board currentBoard) {
         this.currentBoard = currentBoard;
         boolean madeMove = false;
-        int i, j, max;
+        while (!madeMove) {
 
-        if(!determinePointMove() && determineSafeMove()) {
-            max = 0;
-            i = rng.nextInt(max + 1);
-            j = rng.nextInt(max + 1);
-            madeMove = true;
-        }
-        if(determinePointMove() && determineSafeMove() && !madeMove) {
-            // take Point move
-            madeMove = true;
-        }
-        if(determinePointMove() && !determineSafeMove() && !madeMove) {
-            // recurse
-            madeMove = true;
-        }
-        if(!determinePointMove() && !determineSafeMove() && !madeMove) {
-            //
-            madeMove = true;
+            if (!determinePointMove() && determineSafeMove()) {
+                randomMove();
+                madeMove = true;
+            }
+
+            if (determinePointMove() && determineSafeMove() && !madeMove) {
+                // take Point move
+                madeMove = true;
+            }
+
+            if (determinePointMove() && !determineSafeMove() && !madeMove) {
+                // recurse
+                madeMove = true;
+            }
+
+            if (!determinePointMove() && !determineSafeMove() && !madeMove) {
+                //
+                madeMove = true;
+            }
         }
     }
 }
