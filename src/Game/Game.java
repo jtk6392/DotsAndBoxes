@@ -18,7 +18,7 @@ public class Game implements Paint {
     public void Intialize()
     {
         dots = new Board();
-        dots = new Board(10, 10);
+        dots = new Board(10);
     }
     public static void main(String[] args) {
         System.out.println("Hello, world");
