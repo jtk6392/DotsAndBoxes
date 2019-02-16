@@ -42,7 +42,7 @@ public class AI {
      */
     private int claimedEdges(Box b) {
         int filledSides = 0;
-        for (Box.Side s : Box.Side.values()){
+        for (Box.Side s : Box.Side.values()) {
             if (b.getSide(s)) {
                 filledSides++;
             }
@@ -93,13 +93,14 @@ public class AI {
 
     /**
      * looks through board array and determines if there is at least one box that satisfies scorableBox
+     *
      * @return true or false if move is viable
      */
     private int determinePointMove() {
         int numMoves = 0;
         for (int i = 0; i < currentBoard.getBoardSize(); i++) {
             for (int j = 0; j < currentBoard.getBoardSize(); j++) {
-                if (scorableBox(i, j)){
+                if (scorableBox(i, j)) {
                     numMoves++;
                 }
             }
@@ -109,13 +110,14 @@ public class AI {
 
     /**
      * looks through Board array and determines if there is at least one move that satisfies checkMove
+     *
      * @return true or false if move is viable
      */
     private boolean determineSafeMove() {
         for (int i = 0; i < currentBoard.getBoardSize(); i++) {
             for (int j = 0; j < currentBoard.getBoardSize(); j++) {
-                for (Box.Side s : Box.Side.values()){
-                    if (checkMove(i, j, s)){
+                for (Box.Side s : Box.Side.values()) {
+                    if (checkMove(i, j, s)) {
                         return true;
                     }
                 }
@@ -155,6 +157,7 @@ public class AI {
 
     /**
      * complete AI logic
+     *
      * @param currentBoard board that the AI plays on
      */
     public void makePlay(Board currentBoard) {
@@ -162,23 +165,23 @@ public class AI {
         boolean madeMove = false;
         while (!madeMove) {
 
-            if (!determinePointMove() && determineSafeMove()) {
-                randomMove();
+            if (determinePointMove() > 0 && !determineSafeMove() && !madeMove) {
+                //
                 madeMove = true;
             }
 
-            if (determinePointMove() && determineSafeMove() && !madeMove) {
-                // take Point move
-                madeMove = true;
-            }
-
-            if (determinePointMove() && !determineSafeMove() && !madeMove) {
+            if (determinePointMove() > 0 && !determineSafeMove() && !madeMove) {
                 // recurse
                 madeMove = true;
             }
 
-            if (!determinePointMove() && !determineSafeMove() && !madeMove) {
-                //
+            if (determinePointMove() > 0 && determineSafeMove() && !madeMove) {
+                // take Point move box
+                madeMove = true;
+            }
+
+            if (determinePointMove() > 0 && determineSafeMove() && !madeMove) {
+                randomMove();
                 madeMove = true;
             }
         }
