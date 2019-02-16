@@ -45,6 +45,10 @@ public class Box {
         }
     }
 
+    public int getxVal(){return xVal;}
+
+    public int getyVal(){return yVal;}
+
     public boolean getSide(Side s) {
         switch(s) {
             case EAST: return this.east;

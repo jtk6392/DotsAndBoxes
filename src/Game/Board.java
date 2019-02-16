@@ -40,7 +40,7 @@ public class Board {
         score[2] = i * j;  // total score
     }
 
-    public int getBoardSize(){
+    public int getBoardSize() {
         return this.boxArray.length;
     }
 
@@ -71,16 +71,29 @@ public class Board {
 
     }
 
-    public Box hasPartner(int i, int j, Game.Box.Side s) {
+    public boolean hasPartner(int i, int j, Game.Box.Side s) {
         switch (s) {
-            case EAST && i == getBoardSize():
-                return this.boxArray[i + 1][j];
+            case EAST:
+                return i == getBoardSize();
             case WEST:
-                return this.boxArray[i - 1][j];
+                return i == 0;
             case NORTH:
-                return this.boxArray[i][j + 1];
+                return j == 0;
             case SOUTH:
-                return this.boxArray[i][j - 1];
+                return j == getBoardSize();
+        }
+    }
+
+    public boolean hasPartner(Box b, Game.Box.Side s) {
+        switch (s) {
+            case EAST:
+                return  == getBoardSize();
+            case WEST:
+                return i == 0;
+            case NORTH:
+                return j == 0;
+            case SOUTH:
+                return j == getBoardSize();
         }
     }
 
@@ -95,6 +108,10 @@ public class Board {
             case SOUTH:
                 return this.boxArray[i][j - 1];
         }
+    }
+
+    public Box getBox(int i, int j){
+        return boxArray[i][j];
     }
 
 }
