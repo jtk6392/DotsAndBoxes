@@ -22,7 +22,11 @@ public class Board {
         return this.boxArray.length;
     }
 
-    public static void Play(Game.Box.Side bs, Users player, int i, int j){
+    public Box getBox(int i, int j){
+        return boxArray[i][j];
+    }
+
+    public static void Play(Box.Side bs, Users player, int i, int j){
 
     }
 

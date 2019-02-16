@@ -16,10 +16,15 @@ public class AI {
     }
 
     private boolean checkMove(int i, int j, Box.Side side) {
-        return false;
+        Box currentBox =
     }
+
     private boolean determinePointMove() {
-        for (int i; i<currentBoard.)
+        for (int i=0; i<currentBoard.getBoardSize(); i++){
+            for (int j=0; j<currentBoard.getBoardSize(); j++){
+                Box currentBox =
+            }
+        }
 
         return false;
     }
@@ -32,13 +37,12 @@ public class AI {
     public void makePlay(Board currentBoard) {
         this.currentBoard = currentBoard;
         boolean madeMove = false;
-        int i, j, max, s;
+        int i, j, max;
 
         if(!determinePointMove() && determineSafeMove()) {
-            max = this.currentBoard.getBoardSize();
+            max = 0;
             i = rng.nextInt(max + 1);
             j = rng.nextInt(max + 1);
-            s = rng.nextInt(4);
             madeMove = true;
         }
         if(determinePointMove() && determineSafeMove() && !madeMove) {
