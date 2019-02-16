@@ -25,7 +25,7 @@ public class Box {
         claimed = 0;
     }
 
-    public boolean checkSide(Side s) {
+    public boolean getSide(Side s) {
         switch(s) {
             case EAST: return this.east;
             case WEST: return this.west;
