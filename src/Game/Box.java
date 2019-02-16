@@ -1,13 +1,13 @@
-package DotsAndBoxes.src.Game;
+package Game;
 
 public class Box {
 
     //Fields
-    boolean north;
-    boolean south;
-    boolean east;
-    boolean west;
-    int claimed;
+    private boolean north;
+    private boolean south;
+    private boolean east;
+    private boolean west;
+    private int claimed;
 
     //Constructor for
     public Box(){
@@ -18,13 +18,16 @@ public class Box {
         claimed = 0;
     }
 
-    public int checkClaimed(){
-        if(north == true && south == true && east == true && west == true){
+    public int checkClaimed(Users player){
+        if(this.north && this.south && this.east && this.west){
             //Based on which player's turn it is.
-            claimed = 1;
-            claimed =2;
+            if(player == Users.Player) {
+                this.claimed = 1;
+            } else {
+                this.claimed = 2;
+            }
         }
-        return claimed;
+        return this.claimed;
     }
 
 }

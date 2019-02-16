@@ -1,4 +1,5 @@
-package DotsAndBoxes.src.Game;
+package Game;
 
 public class Board {
+
 }
