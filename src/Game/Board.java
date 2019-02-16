@@ -5,7 +5,7 @@ public class Board {
     /**
      * Creates the box array for the i and j index.
      */
-    private Box boxArray[][];
+    private Box[][] boxArray;
 
     /**
      * Creates score declaration.
@@ -31,9 +31,9 @@ public class Board {
      */
     public Board(int i, int j) {
         boxArray = new Box[i][j];
-        for (int i = 0; i < this.getBoardSize(); i++) {
-            for (int j = 0; j < this.getBoardSize(); j++) {
-                boxArray[i][j] = new Box(i, j);
+        for (int k = 0; k < i; k++) {
+            for (int l = 0; l < j; l++) {
+                boxArray[k][l] = new Box(k, l);
             }
         }
         score = new int[3];
