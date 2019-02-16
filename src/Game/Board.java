@@ -18,7 +18,7 @@ public class Board {
      * Board Size: 4 x 4
      */
     public Board() {
-        this(4, 4);
+        this(4);
     }
 
     /**
@@ -26,18 +26,17 @@ public class Board {
      * score[1]: total player 2
      * score[2]: total score
      *
-     * @param i index of the row
-     * @param j index of the column
+     * @param n The length of the sides of the board.
      */
-    public Board(int i, int j) {
-        boxArray = new Box[i][j];
-        for (int k = 0; k < i; k++) {
-            for (int l = 0; l < j; l++) {
-                boxArray[k][l] = new Box(k, l);
+    public Board(int n) {
+        boxArray = new Box[n][n];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                boxArray[i][j] = new Box(i, j);
             }
         }
         score = new int[3];
-        score[2] = i * j;  // total score
+        score[2] = n*n;  // total score
     }
 
     public int getBoardSize() {
@@ -62,19 +61,39 @@ public class Board {
 
     }
 
+    /**
+     * Returns a string representation of the board.
+     * @return An n*n string representing the board for debugging.
+     */
     @Override
     public String toString() {
         return "No";
     }
 
+    /**
+     * hurray?
+     */
     public static void Win() {
 
     }
 
+    /**
+     * Checks if a box at a specific index has an adjacent side.
+     * @param i the column of the box
+     * @param j the row of the box
+     * @param s the side to check
+     * @return True if there is a box adjacent to the current box.
+     */
     public boolean hasPartner(int i, int j, Game.Box.Side s) {
         return hasPartner(getBox(i, j), s);
     }
 
+    /**
+     * Checks if a box at a specific index has an adjacent side.
+     * @param b the box to check for adjacents
+     * @param s the side to check.
+     * @return True if there is a box adjacent to the current box.
+     */
     public boolean hasPartner(Box b, Game.Box.Side s) {
         switch (s) {
             case EAST:
@@ -85,13 +104,28 @@ public class Board {
                 return b.getyVal() == 0;
             case SOUTH:
                 return b.getyVal() == getBoardSize();
+            default:
+                return false; // Should never reach
         }
     }
 
+    /**
+     * Overload of getPartner
+     * @param i the column of the box
+     * @param j the row of the box
+     * @param s the side to check
+     * @return The 'partner' box
+     */
     public Box getPartner(int i, int j, Game.Box.Side s) {
         return getPartner(getBox(i, j), s);
     }
 
+    /**
+     * Gets the partner to the box.
+     * @param b the box to check for partners
+     * @param s the side to check.
+     * @return a box object that is adjacent to b.
+     */
     public Box getPartner(Box b, Game.Box.Side s) {
         switch (s) {
             case EAST:
@@ -102,9 +136,16 @@ public class Board {
                 return this.boxArray[b.getxVal()][b.getyVal() + 1];
             case SOUTH:
                 return this.boxArray[b.getxVal()][b.getyVal() - 1];
+            default: return null; // Should never reach
         }
     }
 
+    /**
+     * Returns a box at a given index in the board.
+     * @param i the column of the box
+     * @param j the row of the box.
+     * @return A box.
+     */
     public Box getBox(int i, int j) {
         return boxArray[i][j];
     }
