@@ -42,18 +42,12 @@ public class AI {
      */
     private int claimedEdges(Box b) {
         int filledSides = 0;
-        if (b.getSide(Box.Side.NORTH)) {
-            filledSides++;
+        for (Box.Side s : Box.Side.values()){
+            if (b.getSide(s)) {
+                filledSides++;
+            }
         }
-        if (b.getSide(Box.Side.SOUTH)) {
-            filledSides++;
-        }
-        if (b.getSide(Box.Side.EAST)) {
-            filledSides++;
-        }
-        if (b.getSide(Box.Side.WEST)) {
-            filledSides++;
-        }
+
         return filledSides;
     }
 
@@ -97,17 +91,36 @@ public class AI {
     }
 
 
-    private boolean determinePointMove() {
+    /**
+     * looks through board array and determines if there is at least one box that satisfies scorableBox
+     * @return true or false if move is viable
+     */
+    private int determinePointMove() {
+        int numMoves = 0;
         for (int i = 0; i < currentBoard.getBoardSize(); i++) {
             for (int j = 0; j < currentBoard.getBoardSize(); j++) {
-                Box currentBox =
+                if (scorableBox(i, j)){
+                    numMoves++;
+                }
             }
         }
-
-        return false;
+        return numMoves;
     }
 
+    /**
+     * looks through Board array and determines if there is at least one move that satisfies checkMove
+     * @return true or false if move is viable
+     */
     private boolean determineSafeMove() {
+        for (int i = 0; i < currentBoard.getBoardSize(); i++) {
+            for (int j = 0; j < currentBoard.getBoardSize(); j++) {
+                for (Box.Side s : Box.Side.values()){
+                    if (checkMove(i, j, s)){
+                        return true;
+                    }
+                }
+            }
+        }
         return false;
     }
 
