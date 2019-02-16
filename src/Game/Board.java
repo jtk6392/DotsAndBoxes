@@ -72,16 +72,7 @@ public class Board {
     }
 
     public boolean hasPartner(int i, int j, Game.Box.Side s) {
-        switch (s) {
-            case EAST:
-                return i == getBoardSize();
-            case WEST:
-                return i == 0;
-            case NORTH:
-                return j == 0;
-            case SOUTH:
-                return j == getBoardSize();
-        }
+        return hasPartner(getBox(i, j), s);
     }
 
     public boolean hasPartner(Box b, Game.Box.Side s) {
@@ -98,16 +89,7 @@ public class Board {
     }
 
     public Box getPartner(int i, int j, Game.Box.Side s) {
-        switch (s) {
-            case EAST:
-                return this.boxArray[i + 1][j];
-            case WEST:
-                return this.boxArray[i - 1][j];
-            case NORTH:
-                return this.boxArray[i][j + 1];
-            case SOUTH:
-                return this.boxArray[i][j - 1];
-        }
+        return getPartner(getBox(i, j), s);
     }
 
     public Box getPartner(Box b, Game.Box.Side s) {
@@ -123,7 +105,7 @@ public class Board {
         }
     }
 
-    public Box getBox(int i, int j){
+    public Box getBox(int i, int j) {
         return boxArray[i][j];
     }
 
