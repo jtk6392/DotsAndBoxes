@@ -25,6 +25,21 @@ public class Box {
         claimed = 0;
     }
 
+    public void setSide(Side s){
+        if(s == Side.EAST){
+            east = true;
+        }
+        if(s == Side.WEST){
+            west = true;
+        }
+        if(s == Side.NORTH){
+            north = true;
+        }
+        if(s == Side.SOUTH){
+            south = true;
+        }
+    }
+
     public boolean checkSide(Side s) {
         switch(s) {
             case EAST: return this.east;
