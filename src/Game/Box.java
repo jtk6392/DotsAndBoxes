@@ -2,7 +2,7 @@ package DotsAndBoxes.src.Game;
 
 public class Box {
 
-    public enum BoxSide{
+    public enum Side{
         NORTH,
         SOUTH,
         EAST,
@@ -25,7 +25,7 @@ public class Box {
         claimed = 0;
     }
 
-    public boolean checkSide(BoxSide s) {
+    public boolean checkSide(Side s) {
         switch(s) {
             case EAST: return this.east;
             case WEST: return this.west;
