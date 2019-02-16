@@ -106,6 +106,14 @@ public class Box {
         return this.claimed;
     }
 
+    /**
+     * Returns the user that has claimed this box
+     * @return 0, 1, or 2
+     */
+    public int getClaimed() {
+        return this.claimed;
+    }
+
 }
 
 

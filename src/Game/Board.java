@@ -67,7 +67,20 @@ public class Board {
      */
     @Override
     public String toString() {
-        return "No";
+        String outString = "";
+        int[] claims = new int[this.boxArray.length * this.boxArray.length];
+        for(int i = 0; i < this.boxArray.length; i++){
+            for(int j = 0; j < this.boxArray.length; j++) {
+                claims[i+j] = this.boxArray[i][j].getClaimed();
+            }
+        }
+        for(int i = 0; i < claims.length; i++) {
+            outString += claims[i] + " ";
+            if(i%this.boxArray.length == 0) {
+                outString += "\n";
+            }
+        }
+        return outString;
     }
 
     /**
