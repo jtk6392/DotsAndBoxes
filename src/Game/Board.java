@@ -2,30 +2,50 @@ package Game;
 
 public class Board {
 
-    private int i = 4;
-    private int j = 4;
-    private Box boxArray[][] = new Box[i][j];
-    private int score[]= new int[3];
+    /**
+     * Creates the box array for the i and j index.
+     */
+    private Box boxArray[][];
 
+    /**
+     * Creates score declaration.
+     */
+    private int[] score;
 
+    /**
+     * Creates a standard size for the board if the user does not select
+     * a size.
+     * Board Size: 4 x 4
+     */
     public Board(){
-        score[2] = i*j;
+        boxArray = new Box[4][4];
+        score = new int[3];
+        score[2] = 16;
     }
 
+    /**
+     * score[0]: total player 1
+     * score[1]: total player 2
+     * score[2]: total score
+     *
+     * @param i index of the row
+     * @param j index of the column
+     */
     public Board(int i, int j){
-        this.i = i;
-        this.j = j;
-        score[2] = i*j;
+        boxArray = new Box[i][j];
+        score = new int[3];
+        score[2] = i * j;  // total score
     }
 
-    public int getBoardSize(){
-        return this.boxArray.length;
-    }
-
-    public Box getBox(int i, int j){
-        return boxArray[i][j];
-    }
-
+    /**
+     * Sets the state of the size of the box to true
+     * and update and check and see if a box if finished
+     *
+     * @param bs box side
+     * @param player the player
+     * @param i index of the row
+     * @param j index of the column
+     */
     public static void Play(Box.Side bs, Users player, int i, int j){
 
     }
