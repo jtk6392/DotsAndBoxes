@@ -3,6 +3,7 @@ package HardCodeAI;
 import Game.Board;
 import Game.Box;
 import Game.Users;
+
 import java.util.Random;
 
 public class AI {
@@ -15,46 +16,44 @@ public class AI {
         this.player = player;
     }
 
-    private boolean checkBox(int i, int j, Box.Side side){
-        int filledSides = 0;
+    private int claimedEdges(int i, int j, Box.Side side) {
         Box box1 = currentBoard.getBox(i, j);
-        if (box1.getSide(Box.Side.NORTH ){
-            filledSides++;
-        }
-        if (box1.getSide(Box.Side.SOUTH){
-            filledSides++;
-        }
-        if (box1.getSide(Box.Side.EAST){
-            filledSides++;
-        }
-        if (box1.getSide(Box.Side.WEST){
-            filledSides++;
-        }
-        return (filledSides<=2);
+        return claimedEdges(box1);
     }
 
-    private boolean checkBox(Box b){
+    private int claimedEdges(Box b) {
         int filledSides = 0;
-
-        if (b.getSide(Box.Side.NORTH ){
+        if (b.getSide(Box.Side.NORTH)) {
             filledSides++;
         }
-        if (b.getSide(Box.Side.SOUTH){
+        if (b.getSide(Box.Side.SOUTH)) {
             filledSides++;
         }
-        if (b.getSide(Box.Side.EAST){
+        if (b.getSide(Box.Side.EAST)) {
             filledSides++;
         }
-        if (b.getSide(Box.Side.WEST){
+        if (b.getSide(Box.Side.WEST)) {
             filledSides++;
         }
-        return (filledSides<=2);
+        return filledSides;
     }
 
     private boolean checkMove(int i, int j, Box.Side side) {
-        Box newBox = currentBoard.getPartner(i, j, side);
+        if (currentBoard.hasPartner(currentBoard.getBox(i, j), side)) {
+            Box newBox = currentBoard.getPartner(i, j, side);
+            return claimedEdges(i, j, side)<=2 && claimedEdges(newBox)<=2;
+        } else {
+            return claimedEdges(i, j, side)<=2;
+        }
 
-        return checkBox(i, i, side) && checkBox(newBox);
+    }
+
+    private boolean scorableBox(Box b){
+        return claimedEdges(b)==3;
+    }
+
+    private boolean scorableBox(int i, int j){
+        return scorableBox(currentBoard.getBox(i, j));
     }
 
     private boolean determinePointMove() {

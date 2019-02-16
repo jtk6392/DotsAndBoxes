@@ -5,7 +5,7 @@ public class Board {
     /**
      * Creates the box array for the i and j index.
      */
-    private Box boxArray[][];
+    private Box[][] boxArray;
 
     /**
      * Creates score declaration.
@@ -17,10 +17,8 @@ public class Board {
      * a size.
      * Board Size: 4 x 4
      */
-    public Board(){
-        boxArray = new Box[4][4];
-        score = new int[3];
-        score[2] = 16;
+    public Board() {
+        this(4, 4);
     }
 
     /**
@@ -31,55 +29,84 @@ public class Board {
      * @param i index of the row
      * @param j index of the column
      */
-    public Board(int i, int j){
+    public Board(int i, int j) {
         boxArray = new Box[i][j];
+        for (int k = 0; k < i; k++) {
+            for (int l = 0; l < j; l++) {
+                boxArray[k][l] = new Box(k, l);
+            }
+        }
         score = new int[3];
         score[2] = i * j;  // total score
+    }
+
+    public int getBoardSize() {
+        return this.boxArray.length;
     }
 
     /**
      * Sets the state of the size of the box to true
      * and update and check and see if a box if finished
      *
-     * @param bs box side
+     * @param bs     box side
      * @param player the player
-     * @param i index of the row
-     * @param j index of the column
+     * @param i      index of the row
+     * @param j      index of the column
      */
-    public static void Play(Box.Side bs, Users player, int i, int j){
+    public static void Play(Box.Side bs, Users player, int i, int j) {
 
     }
 
-    public static void claimSharedSide(Box.Side s, int i, int j){
+
+    public static void claimSharedSide(int i, int j, Box.Side s) {
 
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "No";
     }
 
-    public static void Win(){
+    public static void Win() {
 
     }
 
-    public Box hasPartner(int i, int j, Game.Box.Side s){
-        switch(s) {
-            case EAST && i == getBoardSize(): return this.boxArray[i+1][j];
-            case WEST: return this.boxArray[i-1][j];
-            case NORTH: return this.boxArray[i][j+1];
-            case SOUTH: return this.boxArray[i][j-1];
+    public boolean hasPartner(int i, int j, Game.Box.Side s) {
+        return hasPartner(getBox(i, j), s);
+    }
+
+    public boolean hasPartner(Box b, Game.Box.Side s) {
+        switch (s) {
+            case EAST:
+                return b.getxVal() == getBoardSize();
+            case WEST:
+                return b.getxVal() == 0;
+            case NORTH:
+                return b.getyVal() == 0;
+            case SOUTH:
+                return b.getyVal() == getBoardSize();
         }
     }
 
-    public Box getPartner(int i, int j, Game.Box.Side s){
-        switch(s) {
-            case EAST: return this.boxArray[i+1][j];
-            case WEST: return this.boxArray[i-1][j];
-            case NORTH: return this.boxArray[i][j+1];
-            case SOUTH: return this.boxArray[i][j-1];
+    public Box getPartner(int i, int j, Game.Box.Side s) {
+        return getPartner(getBox(i, j), s);
+    }
+
+    public Box getPartner(Box b, Game.Box.Side s) {
+        switch (s) {
+            case EAST:
+                return this.boxArray[b.getxVal() + 1][b.getyVal()];
+            case WEST:
+                return this.boxArray[b.getxVal() - 1][b.getyVal()];
+            case NORTH:
+                return this.boxArray[b.getxVal()][b.getyVal() + 1];
+            case SOUTH:
+                return this.boxArray[b.getxVal()][b.getyVal() - 1];
         }
+    }
+
+    public Box getBox(int i, int j) {
+        return boxArray[i][j];
     }
 
 }
