@@ -97,7 +97,7 @@ public class Board {
      * @param s the side to check
      * @return True if there is a box adjacent to the current box.
      */
-    public boolean hasPartner(int i, int j, Game.Box.Side s) {
+    public boolean hasPartner(int i, int j, Box.Side s) {
         return hasPartner(getBox(i, j), s);
     }
 
@@ -107,7 +107,7 @@ public class Board {
      * @param s the side to check.
      * @return True if there is a box adjacent to the current box.
      */
-    public boolean hasPartner(Box b, Game.Box.Side s) {
+    public boolean hasPartner(Box b, Box.Side s) {
         switch (s) {
             case EAST:
                 return b.getxVal() == getBoardSize();
@@ -129,7 +129,7 @@ public class Board {
      * @param s the side to check
      * @return The 'partner' box
      */
-    public Box getPartner(int i, int j, Game.Box.Side s) {
+    public Box getPartner(int i, int j, Box.Side s) {
         return getPartner(getBox(i, j), s);
     }
 
@@ -139,7 +139,7 @@ public class Board {
      * @param s the side to check.
      * @return a box object that is adjacent to b.
      */
-    public Box getPartner(Box b, Game.Box.Side s) {
+    public Box getPartner(Box b, Box.Side s) {
         switch (s) {
             case EAST:
                 return this.boxArray[b.getxVal() + 1][b.getyVal()];
