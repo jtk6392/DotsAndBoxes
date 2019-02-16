@@ -17,7 +17,7 @@ public class Board {
      * a size.
      * Board Size: 4 x 4
      */
-    public Board(){
+    public Board() {
         boxArray = new Box[4][4];
         score = new int[3];
         score[2] = 16;
@@ -31,55 +31,41 @@ public class Board {
      * @param i index of the row
      * @param j index of the column
      */
-    public Board(int i, int j){
+    public Board(int i, int j) {
         boxArray = new Box[i][j];
         score = new int[3];
         score[2] = i * j;  // total score
     }
 
     /**
-     * Sets the state of the size of the box to true
+     * Sets the state of the side of the box to true
      * and update and check and see if a box if finished
      *
-     * @param bs box side
+     * @param B      a box object that gets passed in]
+     * @param bs     box side
      * @param player the player
-     * @param i index of the row
-     * @param j index of the column
+     * @param i      index of the row
+     * @param j      index of the column
      */
-    public static void Play(Box.Side bs, Users player, int i, int j){
-
+    public static void Play(Box B, Box.Side bs, Users player, int i, int j) {
+//        B.checkSide(bs)
     }
 
-    public static void claimSharedSide(Box.Side s, int i, int j){
+    public static void claimSharedSide(Box.Side s, int i, int j) {
 
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "No";
     }
 
-    public static void Win(){
+    public static void Win() {
 
     }
 
-    public Box hasPartner(int i, int j, Game.Box.Side s){
-        switch(s) {
-            case EAST && i == getBoardSize(): return this.boxArray[i+1][j];
-            case WEST: return this.boxArray[i-1][j];
-            case NORTH: return this.boxArray[i][j+1];
-            case SOUTH: return this.boxArray[i][j-1];
-        }
-    }
-
-    public Box getPartner(int i, int j, Game.Box.Side s){
-        switch(s) {
-            case EAST: return this.boxArray[i+1][j];
-            case WEST: return this.boxArray[i-1][j];
-            case NORTH: return this.boxArray[i][j+1];
-            case SOUTH: return this.boxArray[i][j-1];
-        }
+    public static Box getPartner() {
+        return new Box();
     }
 
 }
