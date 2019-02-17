@@ -36,7 +36,7 @@ public class Board {
             }
         }
         score = new int[3];
-        score[2] = n*n;  // total score
+        score[2] = n * n;  // total score
     }
 
     public int getBoardSize() {
@@ -61,44 +61,62 @@ public class Board {
     }
 
 
-    public static void claimSharedSide(int i, int j, Box.Side s) {
-
+    /**
+     * Checks for the shared side and sees if the side is the boarder of the box
+     *
+     * @param s the side being checked
+     * @param b box
+     */
+    public void claimSharedSide(Box.Side s, Box b) {
+//        int xLength = boxArray[i].length;
+//        int yLength = boxArray[j].length;
+        if (hasPartner(b, s)) {
+            getPartner(b, s);
+        }
+        if (!b.getSide(s)) {
+            b.setSide(s);
+        }
     }
 
     /**
      * Returns a string representation of the board.
+     *
      * @return An n*n string representing the board for debugging.
      */
     @Override
     public String toString() {
         String outString = "";
         int[] claims = new int[this.boxArray.length * this.boxArray.length];
-        for(int i = 0; i < this.boxArray.length; i++){
-            for(int j = 0; j < this.boxArray.length; j++) {
-                claims[i+j] = this.boxArray[i][j].getClaimed();
+        for (int i = 0; i < this.boxArray.length; i++) {
+            for (int j = 0; j < this.boxArray.length; j++) {
+                claims[i + j] = this.boxArray[i][j].getClaimed();
             }
         }
         int k = 0;
-        for(int i = 0; i < claims.length; i++) {
+        for (int i = 0; i < claims.length; i++) {
             outString += claims[i] + " ";
             k++;
-            if(k==this.boxArray.length) {
+            if (k == this.boxArray.length) {
                 outString += "\n";
-                k=0;
+                k = 0;
             }
         }
         return outString;
     }
 
     /**
-     * hurray?
+     * This checks the number of boxes
+     * When there are no moves are
+     *
+     * if player 1 claimed = player 2 claim then it equals the number of boxes
      */
-    public static void Win() {
-
+    public static void Win(Users p1, Users p2, Box b) {
+//        if (score[0])
     }
 
     /**
      * Checks if a box at a specific index has an adjacent side.
+     *
      * @param i the column of the box
      * @param j the row of the box
      * @param s the side to check
@@ -110,7 +128,8 @@ public class Board {
 
     /**
      * Checks if a box at a specific index has an adjacent side.
-     * @param b the box to check for adjacents
+     *
+     * @param b the box to check for adjacent
      * @param s the side to check.
      * @return True if there is a box adjacent to the current box.
      */
@@ -131,6 +150,7 @@ public class Board {
 
     /**
      * Overload of getPartner
+     *
      * @param i the column of the box
      * @param j the row of the box
      * @param s the side to check
@@ -142,6 +162,7 @@ public class Board {
 
     /**
      * Gets the partner to the box.
+     *
      * @param b the box to check for partners
      * @param s the side to check.
      * @return a box object that is adjacent to b.
@@ -156,12 +177,14 @@ public class Board {
                 return this.boxArray[b.getxVal()][b.getyVal() + 1];
             case SOUTH:
                 return this.boxArray[b.getxVal()][b.getyVal() - 1];
-            default: return null; // Should never reach
+            default:
+                return null; // Should never reach
         }
     }
 
     /**
      * Returns a box at a given index in the board.
+     *
      * @param i the column of the box
      * @param j the row of the box.
      * @return A box.
