@@ -47,6 +47,7 @@ public class Board {
         return this.boxArray.length;
     }
 
+
     /**
      * Sets the state of the size of the box to true
      * and update and check and see if a box if finished.
@@ -61,25 +62,18 @@ public class Board {
     public boolean Play(Box.Side bs, Users player, int i, int j) {
         boolean boxSide = boxArray[i][j].getSide(bs);
         if (!boxSide) {
-            if (boxArray[i][j].checkClaimed(player) == 1 || boxArray[i][j].checkClaimed(player) == 2) {
-                return false;
+            if (hasPartner(boxArray[i][j], bs)) {
+                claimSharedSide(bs, boxArray[i][j]);
             } else {
-                if (hasPartner(boxArray[i][j], bs)) {
-                    claimSharedSide(bs, boxArray[i][j]);
-                    if (this.currentPlayer == Users.PLAYER1) {
-                        boxArray[i][j].setClaimed(2);
-                        this.currentPlayer = Users.PLAYER2;
-                        return true;
-                    } else {
-                        boxArray[i][j].setClaimed(1);
-                        this.currentPlayer = Users.PLAYER1;
-                        return true;
-                    }
-                } else {
-                    boxArray[i][j].setSide(bs);
-                    return true;
-                }
+                boxArray[i][j].setSide(bs);
             }
+
+            int claim = boxArray[i][j].checkClaimed(player);
+            boxArray[i][j].setClaimed(claim);
+            if (claim != 0) {
+                this.currentPlayer = Users.values()[claim-1];
+            }
+            return true;
         }
         return false;
     }
@@ -145,10 +139,10 @@ public class Board {
             String line2 = "";
             String line3 = "";
             for (int i = 0; i < this.boxArray.length; i++) {
-                Box currentBox = getBox(i,j);
+                Box currentBox = getBox(i, j);
                 line1 += currentBox.getSide(Box.Side.NORTH) ? "---" : "   ";
                 line2 += currentBox.getSide(Box.Side.WEST) ? "|" : " ";
-                line2 += currentBox.getClaimed()==0 ? "0" : currentBox.getClaimed()==1 ? "1" : "2";
+                line2 += currentBox.getClaimed() == 0 ? "0" : currentBox.getClaimed() == 1 ? "1" : "2";
                 line2 += currentBox.getSide(Box.Side.EAST) ? "|" : " ";
                 line3 += currentBox.getSide(Box.Side.SOUTH) ? "---" : "   ";
             }
@@ -190,13 +184,13 @@ public class Board {
     public boolean hasPartner(Box b, Box.Side s) {
         switch (s) {
             case EAST:
-                return b.getxVal() == getBoardSize(); //returns true if east edge of board
+                return b.getxVal() < getBoardSize(); //returns true if east edge of board
             case WEST:
-                return b.getxVal() == 0;//returns true if west edge of board
+                return b.getxVal() > 0;//returns true if west edge of board
             case NORTH:
-                return b.getyVal() == 0;//returns true if north edge of board
+                return b.getyVal() > 0;//returns true if north edge of board
             case SOUTH:
-                return b.getyVal() == getBoardSize();//return true if south edge of board
+                return b.getyVal() < getBoardSize();//return true if south edge of board
             default:
                 return false; // Should never reach
         }
@@ -224,28 +218,13 @@ public class Board {
     public Box getPartner(Box b, Box.Side s) {
         switch (s) {
             case EAST:
-                if ((b.getxVal() + 1) > getBoardSize()) {
-                    return this.boxArray[b.getxVal() - 1][b.getyVal()];
-                } else {
-                    return this.boxArray[b.getxVal() + 1][b.getyVal()];
-                }
+                return this.getBox(b.getxVal() + 1, b.getyVal());
             case WEST:
-                if ((b.getxVal() - 1) < 0) {
-                    return this.boxArray[0][b.getyVal()];
-                } else {
-                    return this.boxArray[b.getxVal() - 1][b.getyVal()];
-                }
+                return this.getBox(b.getxVal() - 1, b.getyVal());
             case NORTH:
-                if ((b.getyVal() - 1) < 0) {
-                    return this.boxArray[b.getyVal()][0];
-                } else {
-                    return this.boxArray[b.getxVal()][b.getyVal() - 1];
-                }
+                return this.getBox(b.getxVal(), b.getyVal() - 1);
             case SOUTH:
-                if ((b.getyVal() + 1) > getBoardSize()) {
-                    return this.boxArray[b.getxVal()][b.getyVal() - 1];
-                }
-                return this.boxArray[b.getxVal()][b.getyVal() + 1];
+                return this.getBox(b.getxVal(), b.getyVal() + 1);
             default:
                 return null; // Should never reach
         }
