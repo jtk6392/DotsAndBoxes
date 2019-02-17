@@ -4,7 +4,7 @@ public class Board implements Cloneable {
     /**
      * Sets the current player.
      */
-    Users currentPlayer = Users.PLAYER1;
+    private Users currentPlayer = Users.PLAYER1;
 
     /**
      * Creates the box array for the i and j index.
@@ -80,9 +80,11 @@ public class Board implements Cloneable {
             if (claim != 0) {
                 this.score[claim-1]++;
                 this.currentPlayer = Users.values()[claim - 1];
-            }
+            }else{
+                this.currentPlayer = (this.currentPlayer == Users.PLAYER1 ? Users.PLAYER2 : Users.PLAYER1);
+                }
             return true;
-        }
+            }
         return false;
     }
 
