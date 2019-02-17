@@ -280,13 +280,16 @@ public class Board {
     }
 
     /**
-     * This checks the number of boxes
-     * When there are no moves are
-     * <p>
-     * if player 1 claimed = player 2 claim then it equals the number of boxes
+     * Determines if a player has won.
+     * @return If Player1 has won, returns 1. If player2 has won, returns 2. If neither player has won, returns 0.
      */
-    public static void Win(Users p1, Users p2, Box b) {
-//        if (score[0])
+    public int Win() {
+        int p1Score = score[0], p2Score = score[1], numBoxes = score[2], winner;
+        if(p1Score + p2Score == numBoxes) {
+            return (p1Score > p2Score ? 1 : 2);
+        } else{
+            return 0;
+        }
     }
 
     /**
