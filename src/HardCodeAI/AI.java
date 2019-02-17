@@ -153,23 +153,24 @@ public class AI {
         this.currentBoard = currentBoard;
         boolean madeMove = false;
         while (!madeMove) {
+            ArrayList<Box> pointMoves = determinePointMove();
 
-            if (determinePointMove().size() > 0 && !determineSafeMove() && !madeMove) {
+            if (pointMoves.size() > 0 && !determineSafeMove() && !madeMove) {
                 //
                 madeMove = true;
             }
 
-            if (determinePointMove().size() > 0 && !determineSafeMove() && !madeMove) {
+            if (pointMoves.size() > 0 && !determineSafeMove() && !madeMove) {
                 // recurse
                 madeMove = true;
             }
 
-            if (determinePointMove().size() > 0 && determineSafeMove() && !madeMove) {
-                // take Point move box
+            if (pointMoves.size() > 0 && determineSafeMove() && !madeMove) {
+                this.currentBoard.;
                 madeMove = true;
             }
 
-            if (determinePointMove().size() > 0 && determineSafeMove() && !madeMove) {
+            if (pointMoves.size() > 0 && determineSafeMove() && !madeMove) {
                 randomMove();
                 madeMove = true;
             }
