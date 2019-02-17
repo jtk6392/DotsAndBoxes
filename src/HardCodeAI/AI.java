@@ -133,6 +133,7 @@ import Game.Users;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.TreeMap;
 
 /**
  * A class that represents the AI enemy in dots and boxes.
@@ -262,15 +263,69 @@ public class AI {
     /**
      * returns ENUM for open side given a box
      * precondition: the box only has one open side
+     *
      * @param b a box
      * @return the side
      */
-    public Box.Side getOpenSide(Box b){
+    public Box.Side getOpenSide(Box b) {
         for (Box.Side side : Box.Side.values()) {
-            if (!b.getSide(side)){
+            if (!b.getSide(side)) {
                 return side;
             }
         }
+        return null;
+    }
+
+    public int playChain(Box b) {
+        return playChain(b, -1);
+    }
+
+    public void advancedStrat(Box b) {
+        Box.Side startSide = getOpenSide(b);
+        Box partner = currentBoard.getPartner(b, startSide);
+        Box.Side partnerSide;
+
+        switch (startSide) {
+            case EAST:
+                partnerSide = Box.Side.WEST;
+                break;
+            case WEST:
+                partnerSide = Box.Side.EAST;
+                break;
+            case NORTH:
+                partnerSide = Box.Side.SOUTH;
+                break;
+            case SOUTH:
+                partnerSide = Box.Side.NORTH;
+                break;
+
+        }
+        currentBoard.play(partnerSide, this.player, partner.getxVal(), partner.getyVal());
+    }
+
+
+    public int playChain(Box b, int stop) {
+        int numMoves = 0;
+        boolean lastMove = false;
+        while (!lastMove && numMoves < stop) {
+            Box.Side side = getOpenSide(b);
+            Box tempBox = b;
+            if (currentBoard.hasPartner(b, side)) {
+                Box nextBox = currentBoard.getPartner(b, side);
+                b = nextBox;
+                lastMove = false;
+            } else {
+                lastMove = true;
+            }
+            this.currentBoard.play(side, this.player, b.getxVal(), b.getyVal());
+
+            numMoves += 1;
+        }
+        if (numMoves == stop) {
+
+        }
+
+        return numMoves;
     }
 
     public Board duplicateBoard(Board gameBoard) {
@@ -296,26 +351,42 @@ public class AI {
         while (!madeMove) {
             ArrayList<Box> pointMoves = determinePointMove();
 
-            if (pointMoves.size() > 0 && !determineSafeMove() && !madeMove) {
-                //
+            if (pointMoves.size() <= 0 && !determineSafeMove() && !madeMove) {
+                Board dupBoard = duplicateBoard(currentBoard);
+                TreeMap<Integer, Box> plays = new TreeMap<Integer, Box>();
+
+                for (int i = 0; i < currentBoard.getBoardSize(); i++) {
+                    for (int j = 0; j < currentBoard.getBoardSize(); j++) {
+
+
+                    }
+                }
                 madeMove = true;
             }
 
             if (pointMoves.size() > 0 && !determineSafeMove() && !madeMove) {
-                // recurse
-                madeMove = true;
-            }
-
-            if (pointMoves.size() > 0 && determineSafeMove() && !madeMove) {
-                for (Box move : pointMoves){
-                    Box.Side side = getOpenSide(move);
-                    this.currentBoard.play();
+                Board dupBoard = duplicateBoard(currentBoard);
+                TreeMap<Integer, Box> plays = new TreeMap<Integer, Box>();
+                for (Box move : pointMoves) {
+                    Box realMove = dupBoard.getBox(move.getxVal(), move.getyVal());
+                    int numPoints = playChain(realMove);
+                    plays.put(numPoints, realMove);
                 }
 
+                int numMoves = plays.lastKey() - 2;
+                playChain(plays.get(plays.lastKey()), numMoves);
                 madeMove = true;
             }
 
             if (pointMoves.size() > 0 && determineSafeMove() && !madeMove) {
+                for (Box move : pointMoves) {
+                    Box.Side side = getOpenSide(move);
+                    this.currentBoard.play(side, this.player, move.getxVal(), move.getyVal());
+                }
+                madeMove = true;
+            }
+
+            if (pointMoves.size() <= 0 && determineSafeMove() && !madeMove) {
                 randomMove();
                 madeMove = true;
             }
