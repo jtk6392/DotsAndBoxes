@@ -114,6 +114,7 @@ public class Box {
         return this.claimed;
     }
 
+
     @Override
     public String toString() {
         String outString = "*";
