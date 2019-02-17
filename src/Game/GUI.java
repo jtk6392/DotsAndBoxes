@@ -45,6 +45,9 @@ public class GUI extends Application {
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("Title of the Window");
 
+        /**
+         * Adds dropshadow
+         */
         DropShadow shadow = new DropShadow();
         x = 20;
         y = 20;
@@ -52,9 +55,12 @@ public class GUI extends Application {
         /**
          * Inputs files and sets them to an image
          */
-        FileInputStream istream = new FileInputStream("C:\\Users\\Isodore\\Desktop\\button.png");
-        FileInputStream bstream = new FileInputStream("C:\\Users\\Isodore\\Desktop\\box.png");
-        FileInputStream lstream = new FileInputStream("C:\\Users\\Isodore\\Desktop\\line.png");
+        FileInputStream istream = new FileInputStream("C:\\Users\\Isodore\\Desktop\\Dots And Not Boxes\\" +
+        "DotsAndBoxes\\.idea\\Resources\\button.png");
+        FileInputStream bstream = new FileInputStream("C:\\Users\\Isodore\\Desktop\\Dots And Not Boxes\\" +
+        "DotsAndBoxes\\.idea\\Resources\\bbox.png");
+        FileInputStream lstream = new FileInputStream("C:\\Users\\Isodore\\Desktop\\Dots And Not Boxes\\" +
+        "DotsAndBoxes\\.idea\\Resources\\b.png");
         Image image = new Image(istream);
         Image box = new Image(bstream);
         Image line = new Image(lstream);
