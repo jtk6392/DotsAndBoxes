@@ -1,5 +1,4 @@
 package Game;
-import java.util.ArrayList;
 
 public class Board implements Cloneable {
     /**
@@ -68,7 +67,7 @@ public class Board implements Cloneable {
      * @param j      index of the column
      * @return true or false
      */
-    public boolean Play(Box.Side bs, Users player, int i, int j) {
+    public boolean play(Box.Side bs, Users player, int i, int j) {
         boolean boxSide = boxArray[i][j].getSide(bs);
         if (!boxSide) {
             if (hasPartner(boxArray[i][j], bs)) {
@@ -266,15 +265,15 @@ public class Board implements Cloneable {
         Users p1 = Users.PLAYER1;
         Users p2 = Users.PLAYER2;
 
-        b.Play(Box.Side.EAST, p1, 0, 0);
-        b.Play(Box.Side.NORTH, p2, 0, 0);
-        b.Play(Box.Side.SOUTH, p1, 0, 0);
-        b.Play(Box.Side.WEST, p2, 0, 0);
+        b.play(Box.Side.EAST, p1, 0, 0);
+        b.play(Box.Side.NORTH, p2, 0, 0);
+        b.play(Box.Side.SOUTH, p1, 0, 0);
+        b.play(Box.Side.WEST, p2, 0, 0);
         System.out.println(b);
 
-        b.Play(Box.Side.NORTH, p1, 1, 0);
-        b.Play(Box.Side.EAST, p2, 1, 0);
-        b.Play(Box.Side.SOUTH, p1, 1, 0);
+        b.play(Box.Side.NORTH, p1, 1, 0);
+        b.play(Box.Side.EAST, p2, 1, 0);
+        b.play(Box.Side.SOUTH, p1, 1, 0);
         System.out.println(b);
         b.completePrint();
     }

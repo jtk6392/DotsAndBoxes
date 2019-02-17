@@ -125,7 +125,7 @@ public class AI {
                 side = Box.Side.NORTH;
         }
         if (checkMove(i, j, side)) {
-            this.currentBoard.Play(side, this.player, i, j);
+            this.currentBoard.play(side, this.player, i, j);
             return true;
         } else {
             return false;
@@ -179,7 +179,7 @@ public class AI {
     public static void main(String[] args) {
         boolean madePlay;
         AI HAL = new AI(new Board(2), Users.PLAYER1);
-        for (int i = 0; i < 12; i++) {
+        for (int i = 0; i < 4; i++) {
             madePlay = false;
             while (!madePlay) {
                 madePlay = HAL.randomMove();
