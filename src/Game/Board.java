@@ -220,7 +220,6 @@ public class Board {
     public static void main(String[] args) {
         Board b = new Board();
         System.out.println("test");
-        System.out.println(b);
 
         Users p1 = Users.PLAYER1;
         Users p2 = Users.PLAYER2;
