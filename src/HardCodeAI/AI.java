@@ -126,9 +126,15 @@ public class AI {
         if (checkMove(i, j, side)) {
             this.currentBoard.Play(side, this.player, i, j);
             return true;
-        } else {
-            return false;
+        } else if (this.currentBoard.getBox(i, j).getClaimed() != 0) {
+            for (Box.Side sides : Box.Side.values()) {
+                if (checkMove(i, j, sides)) {
+                    this.currentBoard.Play(sides, this.player, i, j);
+                    return true;
+                }
+            }
         }
+        return false;
     }
 
     /**
@@ -166,13 +172,14 @@ public class AI {
     public static void main(String[] args) {
         boolean madePlay;
         AI HAL = new AI(new Board(2), Users.PLAYER1);
-        for(int i = 0; i < 12; i++) {
-            madePlay = false;
-            while(!madePlay) {
-                madePlay = HAL.randomMove();
-            }
+        for(int j = 0; j < 4; j++) {
+                madePlay = false;
+                while(!madePlay) {
+                    madePlay = HAL.randomMove();
+                }
         }
         HAL.currentBoard.completePrint();
     }
+
 }
 

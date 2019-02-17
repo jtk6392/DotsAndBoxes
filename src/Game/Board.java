@@ -69,8 +69,9 @@ public class Board {
             }
 
             int claim = boxArray[i][j].checkClaimed(player);
-            boxArray[i][j].setClaimed(claim);
+
             if (claim != 0) {
+                this.score[claim-1]++;
                 this.currentPlayer = Users.values()[claim-1];
             }
             return true;
