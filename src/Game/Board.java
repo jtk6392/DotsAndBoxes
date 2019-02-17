@@ -193,9 +193,27 @@ public class Board {
         return boxArray[i][j];
     }
 
+    /**
+     * Test function for board.
+     * @param args unused.
+     */
     public static void main(String[] args) {
         Board b = new Board();
         System.out.println("test");
+        System.out.println(b);
+
+        Users p1 = Users.PLAYER1;
+        Users p2 = Users.PLAYER2;
+
+        b.Play(Box.Side.EAST, p1, 0,0);
+        b.Play(Box.Side.NORTH,p2,0,0);
+        b.Play(Box.Side.SOUTH,p1,0,0);
+        b.Play(Box.Side.WEST, p2, 0,0);
+        System.out.println(b);
+
+        b.Play(Box.Side.NORTH, p1, 1,0);
+        b.Play(Box.Side.EAST, p2, 1,0);
+        b.Play(Box.Side.SOUTH, p1, 1,0);
         System.out.println(b);
     }
 }
