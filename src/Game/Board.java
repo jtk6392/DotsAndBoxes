@@ -1,6 +1,8 @@
 package Game;
 
-public class Board {
+import java.util.ArrayList;
+
+public class Board implements Cloneable {
     /**
      * Sets the current player.
      */
@@ -47,6 +49,14 @@ public class Board {
         return this.boxArray.length;
     }
 
+    public int[] getScore(){
+        return this.score;
+    }
+
+    public void setScore(int[] score){
+        this.score = score;
+    }
+
 
     /**
      * Sets the state of the size of the box to true
@@ -71,7 +81,7 @@ public class Board {
             int claim = boxArray[i][j].checkClaimed(player);
             boxArray[i][j].setClaimed(claim);
             if (claim != 0) {
-                this.currentPlayer = Users.values()[claim-1];
+                this.currentPlayer = Users.values()[claim - 1];
             }
             return true;
         }
@@ -184,13 +194,13 @@ public class Board {
     public boolean hasPartner(Box b, Box.Side s) {
         switch (s) {
             case EAST:
-                return b.getxVal() < getBoardSize()-1; //returns true if east edge of board
+                return b.getxVal() < getBoardSize() - 1; //returns true if east edge of board
             case WEST:
                 return b.getxVal() > 0;//returns true if west edge of board
             case NORTH:
                 return b.getyVal() > 0;//returns true if north edge of board
             case SOUTH:
-                return b.getyVal() < getBoardSize()-1;//return true if south edge of board
+                return b.getyVal() < getBoardSize() - 1;//return true if south edge of board
             default:
                 return false; // Should never reach
         }
@@ -239,6 +249,10 @@ public class Board {
      */
     public Box getBox(int i, int j) {
         return boxArray[i][j];
+    }
+
+    public void setBox(int i, int j, Box b){
+        this.boxArray[i][j] = b;
     }
 
     /**
