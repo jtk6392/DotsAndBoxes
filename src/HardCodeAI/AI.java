@@ -298,11 +298,17 @@ public class AI {
             case SOUTH:
                 partnerSide = Box.Side.NORTH;
                 break;
-
+                
         }
-        currentBoard.play(partnerSide, this.player, partner.getxVal(), partner.getyVal());
-    }
 
+        for (Box.Side side : Box.Side.values()) {
+            if (!partner.getSide(side) && side != ) {
+
+            }
+        }        Box.Side partnerSide =
+
+        currentBoard.play(partnerSide, this.player, newBox.get)
+    }
 
     public int playChain(Box b, int stop) {
         int numMoves = 0;
@@ -352,29 +358,12 @@ public class AI {
             ArrayList<Box> pointMoves = determinePointMove();
 
             if (pointMoves.size() <= 0 && !determineSafeMove() && !madeMove) {
-                Board dupBoard = duplicateBoard(currentBoard);
-                TreeMap<Integer, Box> plays = new TreeMap<Integer, Box>();
-
-                for (int i = 0; i < currentBoard.getBoardSize(); i++) {
-                    for (int j = 0; j < currentBoard.getBoardSize(); j++) {
-
-
-                    }
-                }
+                //
                 madeMove = true;
             }
 
             if (pointMoves.size() > 0 && !determineSafeMove() && !madeMove) {
-                Board dupBoard = duplicateBoard(currentBoard);
-                TreeMap<Integer, Box> plays = new TreeMap<Integer, Box>();
-                for (Box move : pointMoves) {
-                    Box realMove = dupBoard.getBox(move.getxVal(), move.getyVal());
-                    int numPoints = playChain(realMove);
-                    plays.put(numPoints, realMove);
-                }
 
-                int numMoves = plays.lastKey() - 2;
-                playChain(plays.get(plays.lastKey()), numMoves);
                 madeMove = true;
             }
 
