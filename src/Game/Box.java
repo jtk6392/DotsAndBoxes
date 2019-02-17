@@ -123,7 +123,45 @@ public class Box {
     }
 
 
+    @Override
+    public String toString() {
+        String outString = "*";
+        if(this.north) {
+            outString += "-*";
+        }else {
+            outString += " *";
+        }
+        outString+="\n";
+        if(this.west) {
+            outString += "|" + this.claimed;
+        } else {
+            outString += " " + this.claimed;
+        }
+        if(this.east) {
+            outString += "|";
+        } else{
+            outString += " ";
+        }
+        outString+="\n*";
+        if(this.south) {
+            outString+="-*";
+        }else {
+            outString+=" *";
+        }
+        return outString;
+    }
 
+    public static void main(String[] args) {
+        Box b = new Box(0,0);
+        System.out.println(b);
+        b.south = true;
+        b.west = true;
+        System.out.println(b);
+        b.north = true;
+        b.east = true;
+        int n = b.checkClaimed(Users.PLAYER1);
+        System.out.println(b);
+    }
 }
 
 
