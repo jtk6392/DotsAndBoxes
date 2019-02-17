@@ -114,6 +114,12 @@ public class Box {
         return this.claimed;
     }
 
+    public void setClaimed(int x){
+        this.claimed = x;
+    }
+
+
+
 }
 
 
