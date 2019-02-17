@@ -132,6 +132,20 @@ public class AI {
         }
     }
 
+    /**
+     * returns ENUM for open side given a box
+     * precondition: the box only has one open side
+     * @param b a box
+     * @return the side
+     */
+    public Box.Side getOpenSide(Box b){
+        for (Box.Side side : Box.Side.values()) {
+            if (!b.getSide(side)){
+                return side;
+            }
+        }
+    }
+
     public Board duplicateBoard(Board gameBoard) {
         int n = gameBoard.getBoardSize();
         Board clone = new Board();
@@ -166,7 +180,11 @@ public class AI {
             }
 
             if (pointMoves.size() > 0 && determineSafeMove() && !madeMove) {
-                this.currentBoard.;
+                for (Box move : pointMoves){
+                    Box.Side side = getOpenSide(move);
+                    this.currentBoard.play();
+                }
+
                 madeMove = true;
             }
 
