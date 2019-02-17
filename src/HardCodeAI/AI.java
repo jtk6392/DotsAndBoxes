@@ -29,8 +29,8 @@ public class AI {
     /**
      * checks to see if a move will create a new box with 3 claimed edges
      *
-     * @param i x coordinate of box
-     * @param j y coordinate of box
+     * @param i    x coordinate of box
+     * @param j    y coordinate of box
      * @param side side that we want to test
      * @return boolean good move = true
      */
@@ -76,12 +76,13 @@ public class AI {
         for (int i = 0; i < currentBoard.getBoardSize(); i++) {
             for (int j = 0; j < currentBoard.getBoardSize(); j++) {
                 if (scorableBox(i, j)) {
-                    pointMoves.add(this.currentBoard.getBox(i,j));
+                    pointMoves.add(this.currentBoard.getBox(i, j));
                 }
             }
         }
         return pointMoves;
     }
+
     /**
      * looks through Board array and determines if there is at least one move that satisfies checkMove
      *
@@ -126,15 +127,21 @@ public class AI {
         if (checkMove(i, j, side)) {
             this.currentBoard.Play(side, this.player, i, j);
             return true;
-        } else if (this.currentBoard.getBox(i, j).getClaimed() != 0) {
-            for (Box.Side sides : Box.Side.values()) {
-                if (checkMove(i, j, sides)) {
-                    this.currentBoard.Play(sides, this.player, i, j);
-                    return true;
-                }
+        } else {
+            return false;
+        }
+    }
+
+    public Board duplicateBoard(Board gameBoard) {
+        int n = gameBoard.getBoardSize();
+        Board clone = new Board();
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                clone.setBox(i, j, gameBoard.getBox(i, j));
             }
         }
-        return false;
+        clone.setScore(gameBoard.getScore());
+        return clone;
     }
 
     /**
@@ -172,14 +179,13 @@ public class AI {
     public static void main(String[] args) {
         boolean madePlay;
         AI HAL = new AI(new Board(2), Users.PLAYER1);
-        for(int j = 0; j < 4; j++) {
-                madePlay = false;
-                while(!madePlay) {
-                    madePlay = HAL.randomMove();
-                }
+        for (int i = 0; i < 12; i++) {
+            madePlay = false;
+            while (!madePlay) {
+                madePlay = HAL.randomMove();
+            }
         }
         HAL.currentBoard.completePrint();
     }
-
 }
 
