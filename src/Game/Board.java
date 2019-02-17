@@ -1,6 +1,6 @@
 package Game;
 
-public class Board implements Cloneable {
+public class Board {
     /**
      * Sets the current player.
      */
@@ -95,7 +95,7 @@ public class Board implements Cloneable {
      * @param s the side being checked
      * @param b box
      */
-    public void claimSharedSide(Box.Side s, Box b) {
+    private void claimSharedSide(Box.Side s, Box b) {
         switch (s) {
             case NORTH:
                 getPartner(b, s).setSide(Box.Side.SOUTH);
@@ -132,8 +132,8 @@ public class Board implements Cloneable {
             }
         }
         int k = 0;
-        for (int i = 0; i < claims.length; i++) {
-            outString += claims[i] + " ";
+        for(int i:claims) {
+            outString += i + " ";
             k++;
             if (k == this.boxArray.length) {
                 outString += "\n";
@@ -267,7 +267,7 @@ public class Board implements Cloneable {
         Users p1 = Users.PLAYER1;
         Users p2 = Users.PLAYER2;
 
-        b.play(Box.Side.EAST, p1, 0, 0);
+        boolean t = b.play(Box.Side.EAST, p1, 0, 0);
         b.play(Box.Side.NORTH, p2, 0, 0);
         b.play(Box.Side.SOUTH, p1, 0, 0);
         b.play(Box.Side.WEST, p2, 0, 0);
