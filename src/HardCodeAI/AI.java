@@ -4,8 +4,12 @@ import Game.Board;
 import Game.Box;
 import Game.Users;
 
+import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * A class that represents the AI enemy in dots and boxes.
+ */
 public class AI {
     private Board currentBoard;
     private Users player;
@@ -96,18 +100,18 @@ public class AI {
      *
      * @return true or false if move is viable
      */
-    private int determinePointMove() {
-        int numMoves = 0;
+    private ArrayList<Box> determinePointMove() {
+
+        ArrayList<Box> pointMoves = new ArrayList<>(0);
         for (int i = 0; i < currentBoard.getBoardSize(); i++) {
             for (int j = 0; j < currentBoard.getBoardSize(); j++) {
                 if (scorableBox(i, j)) {
-                    numMoves++;
+                    pointMoves.add(this.currentBoard.getBox(i,j));
                 }
             }
         }
-        return numMoves;
+        return pointMoves;
     }
-
     /**
      * looks through Board array and determines if there is at least one move that satisfies checkMove
      *
@@ -165,22 +169,22 @@ public class AI {
         boolean madeMove = false;
         while (!madeMove) {
 
-            if (determinePointMove() > 0 && !determineSafeMove() && !madeMove) {
+            if (determinePointMove().size() > 0 && !determineSafeMove() && !madeMove) {
                 //
                 madeMove = true;
             }
 
-            if (determinePointMove() > 0 && !determineSafeMove() && !madeMove) {
+            if (determinePointMove().size() > 0 && !determineSafeMove() && !madeMove) {
                 // recurse
                 madeMove = true;
             }
 
-            if (determinePointMove() > 0 && determineSafeMove() && !madeMove) {
+            if (determinePointMove().size() > 0 && determineSafeMove() && !madeMove) {
                 // take Point move box
                 madeMove = true;
             }
 
-            if (determinePointMove() > 0 && determineSafeMove() && !madeMove) {
+            if (determinePointMove().size() > 0 && determineSafeMove() && !madeMove) {
                 randomMove();
                 madeMove = true;
             }
