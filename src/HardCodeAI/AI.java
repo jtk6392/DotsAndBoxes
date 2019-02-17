@@ -225,12 +225,29 @@ public class AI {
             ArrayList<Box> pointMoves = determinePointMove();
 
             if (pointMoves.size() <= 0 && !determineSafeMove() && !madeMove) {
-                //
+                Board dupBoard = duplicateBoard(currentBoard);
+                TreeMap<Integer, Box> plays = new TreeMap<Integer, Box>();
+
+                for (int i = 0; i < currentBoard.getBoardSize(); i++) {
+                    for (int j = 0; j < currentBoard.getBoardSize(); j++) {
+
+
+                    }
+                }
                 madeMove = true;
             }
 
             if (pointMoves.size() > 0 && !determineSafeMove() && !madeMove) {
+                Board dupBoard = duplicateBoard(currentBoard);
+                TreeMap<Integer, Box> plays = new TreeMap<Integer, Box>();
+                for (Box move : pointMoves) {
+                    Box realMove = dupBoard.getBox(move.getxVal(), move.getyVal());
+                    int numPoints = playChain(realMove);
+                    plays.put(numPoints, realMove);
+                }
 
+                int numMoves = plays.lastKey() - 2;
+                playChain(plays.get(plays.lastKey()), numMoves);
                 madeMove = true;
             }
 
