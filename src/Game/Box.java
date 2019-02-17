@@ -114,6 +114,10 @@ public class Box {
         return this.claimed;
     }
 
+    /**
+     * This gives the claimed side to player 1 or player 2
+     * @param x a 1 for Player 1 or 2 for Player 2
+     */
     public void setClaimed(int x){
         this.claimed = x;
     }
