@@ -17,6 +17,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Game/Board.java">
           <provider selected="true" editor-type-id="text-editor">
+
             <state relative-caret-position="164">
               <caret line="113" column="17" selection-start-line="113" selection-start-column="17" selection-end-line="113" selection-end-column="17" />
               <folding>
@@ -37,6 +38,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Game/Box.java">
           <provider selected="true" editor-type-id="text-editor">
+
             <state relative-caret-position="1440">
               <caret line="96" column="42" lean-forward="true" selection-start-line="96" selection-start-column="42" selection-end-line="96" selection-end-column="42" />
             </state>
@@ -44,13 +46,15 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Game/GUI.java">
+        <entry file="file://$PROJECT_DIR$/src/Game/Users.java">
           <provider selected="true" editor-type-id="text-editor">
+
             <state relative-caret-position="75">
               <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+
             </state>
           </provider>
         </entry>
@@ -58,18 +62,21 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/HardCodeAI/AI.java">
           <provider selected="true" editor-type-id="text-editor">
+
             <state relative-caret-position="1170">
               <caret line="80" selection-start-line="80" selection-end-line="80" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Game/Game.java">
+        <entry file="file://$PROJECT_DIR$/src/MachineLearningAI/ML.java">
           <provider selected="true" editor-type-id="text-editor">
+
             <state relative-caret-position="300">
               <caret line="20" column="27" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
               <folding>
@@ -84,6 +91,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="45">
               <caret line="3" column="27" selection-start-line="3" selection-start-column="27" selection-end-line="3" selection-end-column="27" />
+
             </state>
           </provider>
         </entry>
@@ -92,14 +100,19 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/Game/Users.java" />
-        <option value="$PROJECT_DIR$/src/HardCodeAI/AI.java" />
         <option value="$PROJECT_DIR$/src/Game/Box.java" />
         <option value="$PROJECT_DIR$/src/Game/Game.java" />
+        <option value="$PROJECT_DIR$/src/HardCodeAI/AI.java" />
         <option value="$PROJECT_DIR$/src/Game/Board.java" />
       </list>
     </option>
@@ -113,6 +126,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -131,17 +145,25 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Game" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="DotsAndBoxes" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DotsAndBoxes" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="HardCodeAI" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="Scope" />
+
       <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550365012634" />
     <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.15" />
@@ -159,7 +181,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.game">
+  <component name="RunManager" selected="Application.Board">
     <configuration name="Board" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Game.Board" />
       <module name="DotsAndBoxes" />
@@ -182,8 +204,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.game" />
         <item itemvalue="Application.Board" />
+        <item itemvalue="Application.game" />
       </list>
     </recent_temporary>
   </component>
@@ -199,6 +221,7 @@
       <updated>1550351333967</updated>
       <workItem from="1550351335125" duration="191000" />
       <workItem from="1550359258220" duration="230000" />
+      <workItem from="1550361855106" duration="364000" />
     </task>
     <task id="LOCAL-00001" summary="Updating the Board class">
       <created>1550351474574</created>
@@ -242,16 +265,32 @@
       <option name="project" value="LOCAL" />
       <updated>1550359068778</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Fixed toString and AI">
+      <created>1550361937212</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1550361937212</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Fixed toString and AI">
+      <created>1550362044864</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1550362044864</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
+
     <option name="totallyTimeSpent" value="9627000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="219" y="23" width="1221" height="822" extended-state="0" />
     <editor active="true" />
     <layout>
+
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49863014" visible="true" weight="0.2544529" />
       <window_info id="Structure" order="1" sideWeight="0.50136983" side_tool="true" visible="true" weight="0.2544529" />
       <window_info id="Capture Tool" order="2" />
@@ -261,6 +300,7 @@
       <window_info id="Favorites" order="6" sideWeight="0.50119907" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
+
       <window_info anchor="bottom" id="Run" order="2" weight="0.32954547" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -333,9 +373,11 @@
     <MESSAGE value="More updates to board and added a get claim function to box." />
     <MESSAGE value="minor fix to game" />
     <MESSAGE value="board main" />
-    <option name="LAST_COMMIT_MESSAGE" value="board main" />
+    <MESSAGE value="Fixed toString and AI" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed toString and AI" />
   </component>
   <component name="editorHistoryManager">
+
     <entry file="file://$PROJECT_DIR$/src/Game/GUI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -346,8 +388,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/HardCodeAI/AI.java">
+    <entry file="file://$PROJECT_DIR$/src/MachineLearningAI/ML.java">
       <provider selected="true" editor-type-id="text-editor">
+
         <state relative-caret-position="1170">
           <caret line="80" selection-start-line="80" selection-end-line="80" />
           <folding>
@@ -373,10 +416,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Game/Users.java">
+    <entry file="file://$PROJECT_DIR$/src/Game/Board.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="27" selection-start-line="3" selection-start-column="27" selection-end-line="3" selection-end-column="27" />
+        <state relative-caret-position="333">
+          <caret line="182" column="30" selection-start-line="182" selection-start-column="30" selection-end-line="182" selection-end-column="30" />
         </state>
       </provider>
     </entry>
