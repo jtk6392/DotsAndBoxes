@@ -78,10 +78,13 @@ public class Board {
                 claims[i+j] = this.boxArray[i][j].getClaimed();
             }
         }
+        int k = 0;
         for(int i = 0; i < claims.length; i++) {
             outString += claims[i] + " ";
-            if(i%this.boxArray.length == 0) {
+            k++;
+            if(k==this.boxArray.length) {
                 outString += "\n";
+                k=0;
             }
         }
         return outString;

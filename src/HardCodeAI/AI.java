@@ -151,7 +151,7 @@ public class AI {
                 side = Box.Side.NORTH;
         }
         if (checkMove(i, j, side)) {
-            Board.Play(side, this.player, i, j);
+            this.currentBoard.Play(side, this.player, i, j);
         }
     }
 
