@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 
+=======
+/**
+>>>>>>> 75b14e96bbdf2807baf6c44994fd2ded95a84143
 package Game;
 
 //Import statements
@@ -134,4 +138,9 @@ public class GUI extends Application {
 
     }
 
+<<<<<<< HEAD
 }
+=======
+}
+*/
+>>>>>>> 75b14e96bbdf2807baf6c44994fd2ded95a84143
