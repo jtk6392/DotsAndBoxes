@@ -58,8 +58,8 @@ public class AI {
     /**
      * checks to see if a move will create a new box with 3 claimed edges
      *
-     * @param i    x coordinate of box
-     * @param j    y coordinate of box
+     * @param i x coordinate of box
+     * @param j y coordinate of box
      * @param side side that we want to test
      * @return boolean whether or not the move is good
      */
@@ -133,13 +133,12 @@ public class AI {
     /**
      * selects a random move that will not cause the other player to have a scorable box
      */
-    private void randomMove() {
+    private boolean randomMove() {
         int i, j, max, s;
         Box.Side side = null;
-        max = 0;
-
-        i = rng.nextInt(max) + 1;
-        j = rng.nextInt(max) + 1;
+        max = this.currentBoard.getBoardSize();
+        i = rng.nextInt(max);
+        j = rng.nextInt(max);
         s = rng.nextInt(4);
         switch (s) {
             case 0:
@@ -156,6 +155,9 @@ public class AI {
         }
         if (checkMove(i, j, side)) {
             this.currentBoard.Play(side, this.player, i, j);
+            return true;
+        } else {
+            return false;
         }
     }
 
@@ -190,4 +192,17 @@ public class AI {
             }
         }
     }
+
+    public static void main(String[] args) {
+        boolean madePlay;
+        AI HAL = new AI(new Board(2), Users.PLAYER1);
+        for(int i = 0; i < 12; i++) {
+            madePlay = false;
+            while(!madePlay) {
+                madePlay = HAL.randomMove();
+            }
+        }
+        HAL.currentBoard.completePrint();
+    }
 }
+
