@@ -184,13 +184,13 @@ public class Board {
     public boolean hasPartner(Box b, Box.Side s) {
         switch (s) {
             case EAST:
-                return b.getxVal() < getBoardSize(); //returns true if east edge of board
+                return b.getxVal() < getBoardSize()-1; //returns true if east edge of board
             case WEST:
                 return b.getxVal() > 0;//returns true if west edge of board
             case NORTH:
                 return b.getyVal() > 0;//returns true if north edge of board
             case SOUTH:
-                return b.getyVal() < getBoardSize();//return true if south edge of board
+                return b.getyVal() < getBoardSize()-1;//return true if south edge of board
             default:
                 return false; // Should never reach
         }

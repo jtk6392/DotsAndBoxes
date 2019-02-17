@@ -83,6 +83,10 @@ public class Box {
         return yVal;
     }
 
+    public int getClaimedSides(){
+        return this.claimedSides;
+    }
+
     /**
      * Returns the state of the specified side.
      *

@@ -27,50 +27,21 @@ public class AI {
     }
 
     /**
-     * returns number of claimed edges around a box
-     *
-     * @param i x coordinate of box
-     * @param j y coordinate of box
-     * @return integer corresponding to number of claimed sizes
-     */
-    private int claimedEdges(int i, int j) {
-        Box box1 = currentBoard.getBox(i, j);
-        return claimedEdges(box1);
-    }
-
-    /**
-     * returns number of claimed edges around a box
-     *
-     * @param b the Box we are looking at
-     * @return integer corresponding to number of claimed sizes
-     */
-    private int claimedEdges(Box b) {
-        int filledSides = 0;
-        for (Box.Side s : Box.Side.values()) {
-            if (b.getSide(s)) {
-                filledSides++;
-            }
-        }
-
-        return filledSides;
-    }
-
-    /**
      * checks to see if a move will create a new box with 3 claimed edges
      *
      * @param i x coordinate of box
      * @param j y coordinate of box
      * @param side side that we want to test
-     * @return boolean whether or not the move is good
+     * @return boolean good move = true
      */
     private boolean checkMove(int i, int j, Box.Side side) {
-        if (currentBoard.hasPartner(currentBoard.getBox(i, j), side)) {
-            Box newBox = currentBoard.getPartner(i, j, side);
-            return claimedEdges(i, j) <= 2 && claimedEdges(newBox) <= 2;
-        } else {
-            return claimedEdges(i, j) <= 2;
+        boolean result = true;
+        Box currentBox = currentBoard.getBox(i, j);
+        if (currentBoard.hasPartner(currentBox, side)) {
+            Box newBox = currentBoard.getPartner(currentBox, side);
+            result = newBox.getClaimedSides() + 1 < 3;
         }
-
+        return result && currentBox.getClaimedSides() + 1 < 3;
     }
 
     /**
@@ -80,7 +51,7 @@ public class AI {
      * @return true or false if box only has one unclaimed side
      */
     private boolean scorableBox(Box b) {
-        return claimedEdges(b) == 3;
+        return b.getClaimedSides() == 3;
     }
 
     /**
@@ -101,7 +72,6 @@ public class AI {
      * @return true or false if move is viable
      */
     private ArrayList<Box> determinePointMove() {
-
         ArrayList<Box> pointMoves = new ArrayList<>(0);
         for (int i = 0; i < currentBoard.getBoardSize(); i++) {
             for (int j = 0; j < currentBoard.getBoardSize(); j++) {
